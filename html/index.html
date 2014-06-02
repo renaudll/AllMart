@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Mart 0.2.1</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <script type="text/javascript" src="../js/allmart.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    
+    <input type="file" id="file_database" hidden=True onchange="callback_databasefile_changed();"> <!-- hidden field for import dialog -->
+      
+
+       <script type="text/javascript">
+            function on_searchform_submit()
+            {
+                var cmd_prefix = "http://magasin.iga.net/Search/BasicSearch.aspx?Search=";
+                var cmd_arg1   = document.getElementById('searchbox').value;
+                var cmd = cmd_prefix.concat(cmd_arg1);
+                window.open(cmd, "iframe_iga");
+            }
+        </script>
+        
+        
+      <nav >
+            <ul>
+                <li>
+                    <a href="#">ALLMART</a>
+                </li>
+                <li><a href="http://magasin.iga.net/default.aspx?ct=true" target="_blank">IGA Login</a></li>
+                <li><a href="#" onclick="callback_button_export();">Export</a></li>
+                <li><a href="#" id="button_import_database" onclick="callback_button_import();">Import</a></li>
+                <li><a href="#" onclick="callback_button_debug();">Debug</a></li>
+                <li>
+                    <form style="float:right;" onsubmit="on_searchform_submit()">
+                        <input type="text" value="Search item" onfocus="this.value='';" style="font-size:12px;" id="searchbox">
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        
+      
+    
+      
+    <div id="content">
+        <!-- This thingy will be used to send javascript event to the iga website. -->
+    <iframe name="iframe_iga" id="iframe_iga" src="http://magasin.iga.net/default.aspx?ct=true  "></iframe>
+        
+        <h2>Input</h2>
+        <textarea rows="4" cols="50" onfocus="this.value='';" id="input_list">Molson M</textarea><br>
+        <button type="button" onclick="on_list_button_submit()">Send!</button><br>
+
+        <h2 style="margin-top:2em;">Output</h2>
+        <table id="database">
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+            </tr>
+        </table>
+        <button onclick="callback_button_buy()">Buy</button>
+        <button onclick="callback_button_clear()"><s>Clear</s></button>
+        <button onclick="callback_button_apply()">Apply</button>
+    
+    </div>
+      
+  </body>
+</html>

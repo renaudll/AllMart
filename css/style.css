@@ -1,0 +1,195 @@
+
+
+
+@media print {
+  @page         { margin: 10% }
+  H1, H2, H3,
+  H4, H5, H6    { page-break-after: avoid; page-break-inside: avoid }
+  BLOCKQUOTE,
+  PRE           { page-break-inside: avoid }
+  UL, OL, DL    { page-break-before: avoid }
+}
+
+@media speech {
+  H1, H2, H3,
+  H4, H5, H6    { voice-family: paul, male; stress: 20; richness: 90 }
+  H1            { pitch: x-low; pitch-range: 90 }
+  H2            { pitch: x-low; pitch-range: 80 }
+  H3            { pitch: low; pitch-range: 70 }
+  H4            { pitch: medium; pitch-range: 60 }
+  H5            { pitch: medium; pitch-range: 50 }
+  H6            { pitch: medium; pitch-range: 40 }
+  LI, DT, DD    { pitch: medium; richness: 60 }
+  DT            { stress: 80 }
+  PRE, CODE, TT { pitch: medium; pitch-range: 0; stress: 0; richness: 80 }
+  EM            { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+  STRONG        { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+  DFN           { pitch: high; pitch-range: 60; stress: 60 }
+  S, STRIKE     { richness: 0 }
+  I             { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+  B             { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+  U             { richness: 0 }
+  A:link        { voice-family: harry, male }
+  A:visited     { voice-family: betty, female }
+  A:active      { voice-family: betty, female; pitch-range: 80; pitch: x-high }
+}
+
+
+body
+{
+    margin:0px;
+    font: 12px 'Open Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+    color: #fff;
+    background-color: #222;
+    height: 100%;
+}
+
+a
+{
+ color: #CFC;
+font-weight: bold;
+}
+
+
+
+#content
+{
+    padding:1em;
+    width:33%;
+    display: table-cell;
+}
+
+
+
+
+#content ul{
+  width:75%; 
+}
+#content li{
+    margin-top:1em; 
+}
+
+#content li:hover{
+    background-color:#CFC;
+}
+
+#content li:hover a{
+    color:#222;
+}
+
+#database
+{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:600px;
+border-collapse:collapse;
+}
+#database td, #database th 
+{
+font-size:1em;
+border:1px solid #104e3a;
+padding:3px 7px 2px 7px;
+width:50%;
+}
+#database th 
+{
+font-size:1.1em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#1d9d74;
+color:#ffffff;
+}
+
+#invalid
+{
+ background-color:#a02d2d;   
+}
+
+
+button 
+{
+
+	box-shadow:inset 0px 1px 0px 0px #dcfbe3;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7ed165), color-stop(1, #2c3b2b) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
+	background-color:#bddbfa;
+	text-indent:0;
+	border:1px solid black;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+    padding-top:0px; /* hack */
+}
+button:hover 
+{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
+	background-color:#80b5ea;
+}
+button:active 
+{
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
+
+iframe
+{
+    float:right;
+    margin-top:1em; 
+    margin-right:1em;
+    width:699px;
+    height:500px;
+}
+
+nav
+{
+ width:100%;   
+}
+
+nav ul {
+background: #efefef; 
+background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);  
+background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%); 
+background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%); 
+box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+border-radius: 4px;  
+list-style: none;
+position: relative;
+display: inline-table;
+    width:auto;
+    margin-left:3em;
+}
+
+nav ul:after {
+content: ""; clear: both; display: block;
+}
+
+nav ul li {
+float: left;
+}
+
+nav ul li:hover {
+background: #4b545f;
+background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+}
+
+nav ul li:hover a {
+color: #fff;
+}
+
+nav ul li a {
+display: block; padding: 1em 1em;
+color: #757575; text-decoration: none;
+}
+
