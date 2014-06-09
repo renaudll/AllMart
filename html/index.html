@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="all_mart">
   <head>
     <title>All Mart 0.2.1</title>
-    <link rel="stylesheet" href="../css/style.css"/>
+          <link rel="stylesheet" href="../css/style.css"/>
+
+          <script type="text/javascript" src="../js/angular.min.js"></script>
+
     <script type="text/javascript" src="../js/allmart.js"></script>
     <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
       <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   </head>
-  <body>
-    
+  <body class="container" ng-controller="StoreController as store">
+    <iframe name="iframe_iga" id="iframe_iga" src="http://magasin.iga.net/default.aspx?ct=true" ></iframe>
     <input type="file" id="file_database" hidden=True onchange="callback_databasefile_changed();"> <!-- hidden field for import dialog -->
       
 
@@ -29,9 +32,11 @@
                     <a href="#">ALLMART</a>
                 </li>
                 <li><a href="http://magasin.iga.net/default.aspx?ct=true" target="_blank">IGA Login</a></li>
-                <li><a href="#" onclick="callback_button_export();">Export</a></li>
-                <li><a href="#" id="button_import_database" onclick="callback_button_import();">Import</a></li>
-                <li><a href="#" onclick="callback_button_debug();">Debug</a></li>
+                <li><a href ng-click="store.save()">Save</a></li>
+                <li><a href ng-click="store.load()">Load</a></li>
+                <li><a href ng-click="store.export()">Export</a></li>
+                <li><a href id="button_import_database" onclick="callback_button_import();"><strike>Import</strike></a></li>
+                <li><a href ng-click="store.debug()">Debug</a></li>
                 <li>
                     <form style="float:right;" onsubmit="on_searchform_submit()">
                         <input type="text" value="Search item" onfocus="this.value='';" style="font-size:12px;" id="searchbox">
@@ -45,22 +50,58 @@
       
     <div id="content">
         <!-- This thingy will be used to send javascript event to the iga website. -->
-    <iframe name="iframe_iga" id="iframe_iga" src="http://magasin.iga.net/default.aspx?ct=true  "></iframe>
+    
         
-        <h2>Input</h2>
-        <textarea rows="4" cols="50" onfocus="this.value='';" id="input_list">Molson M</textarea><br>
-        <button type="button" onclick="on_list_button_submit()">Send!</button><br>
+        <!-- List -->
+        <h2>List:</h2>
+        <form name="list" ng-submit="store.add_list_to_cart()">
+            <textarea rows="4" cols="50" ng-model="store.list_input" onfocus="this.value='';" id="input_list">Paste your grocery list here.</textarea><br>
+            <button type="submit" value="submit">Submit</button>
+        </form>
 
-        <h2 style="margin-top:2em;">Output</h2>
-        <table id="database">
-            <tr>
-                <th>Name</th>
-                <th>Code</th>
+        <!-- Cart -->
+        <h2 style="margin-top:2em;">Cart:</h2>
+        <form name="cart" ng-submit="callback_button_apply()">
+          <table id="database">
+            <tr class="product row" ng-repeat="product in store.cart">
+              <td>
+                <img ng-src="{{product.thumbnail}}" width=32 height=32/>
+                <a href="http://magasin.iga.net/Member/AddToQuickList.aspx?Quantity=1&ProductID={{product.code}}" target="iframe_iga">
+                  <textarea ng-model="product.name"></textarea>
+                </a>
+              </td>
+              <td>
+                  <div ng-class="(product.code.length == 18) ? 'valid' : 'invalid'">
+                    <textarea ng-model="product.code"></textarea>
+                  </div>
+              </td>
             </tr>
-        </table>
-        <button onclick="callback_button_buy()">Buy</button>
-        <button onclick="callback_button_clear()"><s>Clear</s></button>
-        <button onclick="callback_button_apply()">Apply</button>
+            </table>
+            <div class="buttons">
+                <button ng-click="store.cart = []">Clear</button>
+                <button ng-click="store.buy()">Buy</button>
+            </div>
+        </form>
+        
+        <!-- Angular.js port -->
+        <h2>All Products:</h2>
+
+        <form name="products" ng-submit="callback_button_apply()">
+          <table>
+            <tr class="product row" ng-repeat="product in store.products">
+              <td>
+                <img ng-src="{{product.thumbnail}}" width=32 height=32/>
+                <a href="http://magasin.iga.net/Member/AddToQuickList.aspx?Quantity=1&ProductID={{product.code}}" target="iframe_iga">
+                  <textarea ng-model="product.name"></textarea>
+                </a>
+              </td>
+              <td>
+                  <div ng-class="(product.code.length == 18) ? 'valid' : 'invalid'">
+                    <textarea ng-model="product.code"></textarea>
+                  </div>
+              </td>
+            </table>
+        </form>
     
     </div>
       
